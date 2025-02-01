@@ -2,8 +2,23 @@
 # The flag is the concatenation of the three flags present in the files.
 
 aaaand that's how i got here. pcapng file.
-after opening it in wireshark it's easy to notice that the dump has basically 3 main sections: first is NFS traffic, then there is also smb2 part and the last chunk is ftp. first guess: every one of these chunks contains one of three flags. 'SMB, FTP, NFS' line in challenge description hints that this guess might be true.
+after opening it in wireshark it's easy to notice that the dump has basically 3 main sections: 
+    - first is NFS traffic, 
+    - then there is also smb2 part 
+    - and the last chunk is ftp. 
+first guess: every one of these chunks contains one of three flags. 
+'SMB, FTP, NFS' line in challenge description hints that this guess might be true.
 
-the easiest one to extract is smb flag. wireshark would gladly help: file - extract objects - smb2. i was able to extract 3 files frome there: one pdf whith a flag aaand... two dead ends. well, let's go further
+the easiest one to extract is smb flag. wireshark would gladly help: 
+    file - extract objects - smb2. 
+i was able to extract 3 files frome there: one pdf whith a flag aaand... 
+two dead ends. well, let's go further
 
-the second one for me was ftp chunk. it's easy to see how data are transfered there. and that's where we get 3 more files. filenames like cat.jpg, cat2.png and cookie.txt can be seen throug the traffic.
+the second one for me was ftp chunk. it's easy to see how data are transfered there. and that's where we get 3 more files. 
+filenames like cat.jpg, cat2.png and cookie.txt can be seen throug the traffic. one time i will insert here some more specific ftp descryption...
+for now let's just keep in mind that what we need is files. fiiiiiles. so i filtred all the traffic by ftp-data. next step: extraction. finally.
+for every file right click on package - follow tcp stream - show as raw - save as (filename). this way we get... 
+    a picture of cat 
+    second flag
+    and 'keep trying' message
+well. keep trying. last one...
