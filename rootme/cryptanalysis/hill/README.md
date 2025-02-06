@@ -18,16 +18,16 @@ firstly, this alphabet contains 67 symbols. 67 is a prime number. nice!<br>
 secondly, spase symbol is encrypted aswell, which makes it impossible to just guess where exactly words are. <br>
 well, if the message seems to talk about cipher used, it probably contains string 'Hill cipher' somewhere. what we need to analyse this cipher is at least 9 chars of plaintext, 'Hill ciph'. because there is 3x3 key, you know. 9 chars.<br>
 using our new alphabet, we  can encode this as <br>
->32 10 28 
->28 42 38 
->10 49 4
+>32 10 28 <br>
+>28 42 38 <br>
+>10 49 4<br>
 
 it was multiplied by some other matrix and now is hidden somwhere inside the ciphertext. my first guess was that it was at the wery beginning, turned out to be wrong though. but for this short explanation, let's say that EgiMbrC7A == Hill ciph<br>
 from now on we'll be talking about matrices, where **P** is plaintext matrix mentioned above, **C** is cipher matrix, **K** is key matrix.<br>
 **C** is vety easy to see: repeating same steps as with **P**, we get:<br>
->31 14 10
->21 0 61
->57 43 35
+>31 14 10<br>
+>21 0 61<br>
+>57 43 35<br>
 
 here goes some mathematics:<br>
 >(**P**x**K**)mod67=**C**
