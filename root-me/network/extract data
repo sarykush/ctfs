@@ -22,3 +22,6 @@ for every file right click on package - follow tcp stream - show as raw - save a
     second flag
     and 'keep trying' message
 well. keep trying. last one...
+NFS transmitts file in open. looking at offsets and length in packages, we are now able to recreate original file from parts. 
+last package was tricky, declarating one data size and giving the other, but there is some pattern at the end of this part. 
+repeating it at the end for file to be exactly the size it was said to be by NFS headers, i've gotten the third key. forgot to write NFS part when i did it so uhhh here it is now
