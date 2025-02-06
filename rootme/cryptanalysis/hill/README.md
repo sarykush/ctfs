@@ -13,25 +13,25 @@ alphabet used:
 
 > The encryption key is 3x3 in size; The message, written in English, seems to talk about the method used.
 
-3 things. ok.
-firstly, this alphabet contains 67 symbols. 67 is a prime number. nice!
-secondly, spase symbol is encrypted aswell, which makes it impossible to just guess where exactly words are. 
-well, if the message seems to talk about cipher used, it probably contains string 'Hill cipher' somewhere. what we need to analyse this cipher is at least 9 chars of plaintext, 'Hill ciph'. because there is 3x3 key, you know. 9 chars.
-using our new alphabet, we  can encode this as 
+3 things. ok.<br>
+firstly, this alphabet contains 67 symbols. 67 is a prime number. nice!<br>
+secondly, spase symbol is encrypted aswell, which makes it impossible to just guess where exactly words are. <br>
+well, if the message seems to talk about cipher used, it probably contains string 'Hill cipher' somewhere. what we need to analyse this cipher is at least 9 chars of plaintext, 'Hill ciph'. because there is 3x3 key, you know. 9 chars.<br>
+using our new alphabet, we  can encode this as <br>
 ``32 10 28 
 28 42 38 
-10 49 4``
-it was multiplied by some other matrix and now is hidden somwhere inside the ciphertext. my first guess was that it was at the wery beginning, turned out to be wrong though. but for this short explanation, let's say that EgiMbrC7A == Hill ciph
-from now on we'll be talking about matrices, where **P** is plaintext matrix mentioned above, **C** is cipher matrix, **K** is key matrix.
-**C** is vety easy to see: repeating same steps as with **P**, we get:
+10 49 4``<br>
+it was multiplied by some other matrix and now is hidden somwhere inside the ciphertext. my first guess was that it was at the wery beginning, turned out to be wrong though. but for this short explanation, let's say that EgiMbrC7A == Hill ciph<br>
+from now on we'll be talking about matrices, where **P** is plaintext matrix mentioned above, **C** is cipher matrix, **K** is key matrix.<br>
+**C** is vety easy to see: repeating same steps as with **P**, we get:<br>
 ``31 14 10
 21 0 61
-57 43 35``
-here goes some mathematics:
-(**P**x**K**)mod67=**C**
-**K**=(**P**^(-1)x**C**)mod67
-order matters. be careful. 
-so, having plaintext and cipher we can now find the key. i wrote matrix invertion function in two steps: first create minor matrix, then... magic. 
-``x^(-1) mod m = x^(m-2) mod m``
-for our problem: every element of inverted matrix mod 67 can be counted as (minor*(determinant**65))%67. now, multiply this inverted matrix by ciphertext matrix and BUM! we have the key. to decipher, multiply every 3-lettered vector of ciphertext by inverted key matrix. repeat for all possible strings that encode 'Hill ciph'
+57 43 35``<br>
+here goes some mathematics:<br>
+(**P**x**K**)mod67=**C**<br>
+**K**=(**P**^(-1)x**C**)mod67<br>
+order matters. be careful. <br>
+so, having plaintext and cipher we can now find the key. i wrote matrix invertion function in two steps: first create minor matrix, then... magic. <br>
+``x^(-1) mod m = x^(m-2) mod m``<br>
+for our problem: every element of inverted matrix mod 67 can be counted as (minor*(determinant**65))%67. now, multiply this inverted matrix by ciphertext matrix and BUM! we have the key. to decipher, multiply every 3-lettered vector of ciphertext by inverted key matrix. repeat for all possible strings that encode 'Hill ciph'<br>
 my code is kinda sloppy and probably could've been done better, BUT well it worked for me. at the end i've found 2 strings that looked kinda readable (a lot of spaces between words, suspisios). spent a few more minutes looking at them aand....... [REDACTED]
